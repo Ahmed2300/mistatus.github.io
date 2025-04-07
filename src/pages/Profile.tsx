@@ -21,6 +21,8 @@ export default function Profile() {
     const fetchProfile = async () => {
       if (!id) return;
 
+      console.log('Profile ID:', id);
+
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
@@ -28,6 +30,7 @@ export default function Profile() {
         .single();
 
       if (error) {
+        console.error('Supabase error:', error);
         toast.error('Failed to fetch profile');
         return;
       }
